@@ -1,48 +1,118 @@
-# Phase 2 Code Challenge: Plantsy
+# 🌱 Plantsy App
 
-## Demo
+Welcome to **Plantsy**! This application is designed for managing a plant store’s inventory, allowing users to add, update, search, view, and remove plants. It’s specifically built for administrators to maintain the plant catalog.
 
-Use this gif as an example of how the app should work.
+## Table of Contents
 
-![Demo GIF](https://curriculum-content.s3.amazonaws.com/phase-2/react-hooks-mock-code-challenge-plantshop/plantsy_demo.gif)
+- [Project Overview](#project-overview)
+- [Setup Instructions](#setup-instructions)
+- [Features](#features)
+  - [Core Features](#core-features)
+  - [Advanced Features](#advanced-features)
+- [Usage](#usage)
+- [Endpoints](#endpoints)
+- [Technologies Used](#technologies-used)
+- [Deployment](#deployment)
 
-## Instructions
+## Project Overview
 
-Welcome to Plantsy! You've been tasked with building out some features for the
-admin side of a plant store. The designers have put together the components and
-CSS. Now it's up to you to bring the features to life by adding stateful logic
-as well as persisting data to the backend via our API.
+**Plantsy** is a React-based web app that interacts with a backend API to manage plant data. It allows users to:
 
-Your job will be to make our app work according to the user stories you will
-find the [Core Deliverables](#Core-Deliverables) section.
+- View a list of all plants.
+- Add new plants to the inventory.
+- Mark plants as sold out.
+- Search plants by their name.
+- Update plant prices.
+- Remove plants from the inventory.
 
-## Setup
+The app uses **React** for the frontend and a JSON server to manage backend operations.
 
-1. Run `npm install` in your terminal.
-2. Run `npm run server`. This will run your backend on port `6001`.
-3. In a new terminal, run `npm start`.
+## Setup Instructions
 
-Make sure to open [http://localhost:6001/plants](http://localhost:6001/plants)
-in the browser to verify that your backend is working before you proceed!
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/briankipyegoon/react-hooks-cc-plantshop.git
+cd react-hooks-cc-plantshop
+```
+
+### 2. Install Dependencies
+
+Use this command to install all necessary dependencies:
+
+```bash
+npm install
+```
+
+### 3. Start the JSON Server
+
+Launch the backend JSON server to manage API requests. It will run at `http://localhost:6001`.
+
+```bash
+npm run server
+```
+
+You can visit `http://localhost:6001/plants` to check that the backend is running correctly.
+
+### 4. Start the React App
+
+In a new terminal window, run the following to start the app:
+
+```bash
+npm start
+```
+
+The app will be available at `http://localhost:3000`.
+
+### 5. Access the App
+
+Go to `http://localhost:3000` in your browser to view the application.
+
+## Features
+
+### Core Features
+
+1. **View All Plants**: The app displays all plants loaded from the backend when it starts.
+2. **Add a New Plant**: Users can add a new plant to the catalog using a form. The new plant is instantly added to the list and saved to the backend.
+3. **Mark as Sold Out**: Users can toggle the availability status of a plant between "In Stock" and "Out of Stock."
+4. **Search for Plants**: The search bar allows users to filter plants by name, updating the displayed list in real-time.
+
+### Advanced Features
+
+1. **Update Plant Price**: Users can edit the price of a plant from the plant card, and the change will be saved to the backend.
+2. **Delete a Plant**: Users can remove plants from the inventory, which will also delete them from the backend.
+
+## Usage
+
+### Add a Plant
+
+To add a plant, fill out the "Plant Name", "Image URL", and "Price" fields in the form at the top, then click **Add Plant**. The plant will appear in the list.
+
+### Search for Plants
+
+Type part of a plant's name in the search bar to filter the list. The results will update dynamically as you type.
+
+### Update Plant Price
+
+To change a plant’s price, enter the new amount in the price field on the plant card and click **Update Price** to save the change. This update will be reflected in the backend.
+
+### Mark a Plant as Sold Out
+
+Each plant card has an **In Stock** button. Clicking this toggles the plant’s availability status between "In Stock" and "Out of Stock."
+
+### Delete a Plant
+
+Click the **Delete** button on a plant card to remove that plant from both the inventory list and the backend.
 
 ## Endpoints
 
-The base URL for your backend is: `http://localhost:6001`
+The app connects to a local JSON server at `http://localhost:6001`. Below are the key API endpoints:
 
-## Core Deliverables
+### GET `/plants`
 
-As a user:
+Fetches the list of all plants.
 
-1. When the app starts, I can see all plants.
-2. I can add a new plant to the page by submitting the form.
-3. I can mark a plant as "sold out".
-4. I can search for plants by their name and see a filtered list of plants.
-
-### Endpoints for Core Deliverables
-
-#### GET /plants
-
-Example Response:
+#### Example Response:
 
 ```json
 [
@@ -61,90 +131,76 @@ Example Response:
 ]
 ```
 
-#### POST `/plants`
+### POST `/plants`
 
-Required Headers:
+Adds a new plant to the inventory.
 
-```js
+#### Request Headers:
+
+```json
 {
   "Content-Type": "application/json"
 }
 ```
 
-Request Object:
+#### Request Body Example:
 
 ```json
 {
-  "name": "string",
-  "image": "string",
-  "price": number
+  "name": "Snake Plant",
+  "image": "./images/snake-plant.jpg",
+  "price": 30.0
 }
 ```
 
-Example Response:
+#### Example Response:
 
 ```json
 {
-  "id": 1,
-  "name": "Aloe",
-  "image": "./images/aloe.jpg",
-  "price": 15.99
+  "id": 3,
+  "name": "Snake Plant",
+  "image": "./images/snake-plant.jpg",
+  "price": 30.0
 }
 ```
 
-## Advanced Deliverables
+### PATCH `/plants/:id`
 
-These deliverables are not required to pass the code challenge, but if you have
-the extra time, or even after the code challenge, they are a great way to
-stretch your skills.
+Updates the price of a specific plant.
 
-You'll have to add additional elements for these features. Feel free to style
-them however you see fit!
-
-> Note: If you are going to attempt these advanced deliverables, please be sure
-> to have a working commit with all the Core Deliverables first!
-
-As a user:
-
-1. I can update the price of a plant and still see the updated price after
-   refreshing the page.
-2. I can delete a plant and it is still gone when I refresh the page.
-
-### Endpoints for Advanced Deliverables
-
-#### PATCH /plants/:id
-
-Required Headers:
-
-```js
-{
-  "Content-Type": "application/json"
-}
-```
-
-Request Object:
+#### Request Body Example:
 
 ```json
 {
-  "price": number
+  "price": 35.0
 }
 ```
 
-Example Response:
+### DELETE `/plants/:id`
 
-```json
-{
-  "id": 1,
-  "name": "Aloe",
-  "image": "./images/aloe.jpg",
-  "price": 16.99
-}
-```
+Removes a plant from the inventory.
 
-#### DELETE /plants/:id
-
-Example Response:
+#### Example Response:
 
 ```json
 {}
 ```
+
+## Technologies Used
+
+- **Frontend**: React, HTML, CSS, JavaScript.
+- **Backend**: JSON Server (simulates a REST API).
+- **Tools**: npm, Fetch API.
+
+## Deployment
+
+The app is live and can be accessed here:  
+[Plantsy Live](https://spontaneous-sunshine-b01107.netlify.app/)
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+This version maintains the original structure but uses different wording to convey the same ideas. Let me know if you need further revisions!
