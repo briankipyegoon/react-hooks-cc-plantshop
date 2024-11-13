@@ -195,7 +195,8 @@ Removes a plant from the inventory.
 ## Deployment
 
 The app is live and can be accessed here:  
-[Plantsy Live](https://spontaneous-sunshine-b01107.netlify.app/)
+[Plantsy ](react-hooks-cc-plantshop-seven.vercel.app
+)
 
 ## License
 
