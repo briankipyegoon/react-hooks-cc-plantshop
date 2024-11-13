@@ -195,8 +195,8 @@ Removes a plant from the inventory.
 ## Deployment
 
 The app is live and can be accessed here:  
-[Plantsy ](react-hooks-cc-plantshop-seven.vercel.app
-)
+[Plantsy ](https://react-hooks-cc-plantshop-seven.vercel.app/)
+
 
 ## License
 
